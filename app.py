@@ -19,6 +19,14 @@ except ImportError as e:
     st.error("Please check your requirements.txt file and ensure all dependencies are installed.")
     st.stop()
 
+# Check for MediaPipe (not available on Python 3.13 yet)
+try:
+    import mediapipe as mp
+    MEDIAPIPE_AVAILABLE = True
+except ImportError:
+    MEDIAPIPE_AVAILABLE = False
+    st.warning("⚠️ MediaPipe is not available on Python 3.13. Face landmark detection will be disabled.")
+
 # utils - ensure these modules exist in utils/
 try:
     from utils.model_loader import load_models

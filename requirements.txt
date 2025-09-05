@@ -4,7 +4,6 @@ numpy
 Pillow
 matplotlib
 librosa
-mediapipe
 scikit-learn
 tensorflow-cpu
 reportlab
