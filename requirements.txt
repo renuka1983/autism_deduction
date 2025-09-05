@@ -1,10 +1,5 @@
 streamlit
 opencv-python-headless
-mediapipe
-librosa
-matplotlib
-scikit-learn
-tensorflow-cpu
-reportlab
 numpy
 Pillow
+matplotlib
