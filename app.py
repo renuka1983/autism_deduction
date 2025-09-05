@@ -4,22 +4,29 @@ import io
 import tempfile
 from datetime import datetime
 
-import cv2
-import numpy as np
-import streamlit as st
-import matplotlib.pyplot as plt
-import librosa
-import librosa.display
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+# Import with error handling for Streamlit Cloud compatibility
+try:
+    import cv2
+    import numpy as np
+    import streamlit as st
+    import matplotlib.pyplot as plt
+    import librosa
+    import librosa.display
+    from reportlab.lib.pagesizes import letter
+    from reportlab.pdfgen import canvas
+except ImportError as e:
+    st.error(f"Missing required dependency: {e}")
+    st.error("Please check your requirements.txt file and ensure all dependencies are installed.")
+    st.stop()
 
 # utils - ensure these modules exist in utils/
 try:
     from utils.model_loader import load_models
     from utils.preprocess import extract_landmarks_from_image, preprocess_handwriting_image, extract_mfcc_from_audio
     from utils.pairs_config import PAIRS  # pairs of mediapipe indices used for distances
-except ImportError:
-    st.error("Error importing utility modules. Please ensure all files are in the correct directory structure.")
+except ImportError as e:
+    st.error(f"Error importing utility modules: {e}")
+    st.error("Please ensure all files are in the correct directory structure.")
     st.stop()
 
 st.set_page_config(
